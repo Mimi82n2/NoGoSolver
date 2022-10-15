@@ -10,6 +10,7 @@ at the University of Edinburgh.
 """
 import traceback
 import numpy as np
+import signal
 import re
 from sys import stdin, stdout, stderr
 from typing import Any, Callable, Dict, List, Tuple
@@ -28,6 +29,9 @@ from board_base import (
 from board import GoBoard
 from board_util import GoBoardUtil
 from engine import GoEngine
+
+def signal_handler(sign, frame):
+    raise RuntimeError("Too Slow!")
 
 class GtpConnection:
     def __init__(self, go_engine: GoEngine, board: GoBoard, debug_mode: bool = False) -> None:
@@ -60,7 +64,8 @@ class GtpConnection:
             "legal_moves": self.legal_moves_cmd,
             "gogui-rules_legal_moves": self.gogui_rules_legal_moves_cmd,
             "gogui-rules_final_result": self.gogui_rules_final_result_cmd,
-            "solve": self.solve_cmd
+            "solve": self.solve_cmd,
+            "timelimit": self.timelimit_cmd
         }
 
         # argmap is used for argument checking
@@ -303,15 +308,19 @@ class GtpConnection:
     Assignment 2 - game-specific commands you have to implement or modify
     ==========================================================================
     """
-    def gogui_rules_final_result_cmd(self, args):
+    def timelimit_cmd(self, args):
+        # Change the time limit for genmove and solve commands
+        self.time_limit = int(args[0])
+
+    def gogui_rules_final_result_cmd(self):
         """ Implement this method correctly """
         legal_moves = GoBoardUtil.generate_legal_moves(self.board, self.board.current_player)
         if len(legal_moves) > 0:
             self.respond('unknown')
         elif self.board.current_player == BLACK:
-            self.respond('')
+            self.respond('w')
         else:
-            self.respond('')
+            self.respond('b')
             
 
     def play_cmd(self, args: List[str]) -> None:
@@ -367,8 +376,47 @@ class GtpConnection:
             
             
     def solve_cmd(self, args: List[str]) -> None:
-        # remove this respond and implement this method
-        self.respond('Implement This for Assignment 2')
+        if self.board.current_player == 1:
+            current_color = 'b'
+            opponent_color = 'w'
+        else:
+            current_color = 'w'
+            opponent_color = 'b'
+        
+        result = self.negamax()
+        if result:
+            self.respond(current_color)
+        # Winner is opponent
+        if result == False:
+            self.respond(opponent_color)
+
+        # Cannot solve within timelimit
+        #self.respond("unknown")
+    
+    def negamax(self) -> bool:
+        legal_moves = GoBoardUtil.generate_legal_moves(self.board, self.board.current_player)
+        if len(legal_moves) == 0:
+            return False
+        for move in legal_moves:
+            #old = self.board.copy()
+            self.play_move_eff(move)
+            #self.board.play_move(move, self.board.current_player)
+            isWin = not self.negamax()
+
+            # Undo the move
+            self.board.board[move] = EMPTY
+            self.board.current_player = opponent(self.board.current_player)
+            
+    
+            
+            if (isWin):
+                return True
+        return False
+
+    def play_move_eff(self, move):
+        self.board.board[move] = self.board.current_player
+        self.board.current_player = opponent(self.board.current_player)
+
 
     """
     ==========================================================================
