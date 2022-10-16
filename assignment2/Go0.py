@@ -12,7 +12,7 @@ from board_base import DEFAULT_SIZE, GO_POINT, GO_COLOR
 from board import GoBoard
 from board_util import GoBoardUtil
 from engine import GoEngine
-
+import cProfile
 
 class Go0:
     def __init__(self):
@@ -46,4 +46,5 @@ def run() -> None:
 
 
 if __name__ == "__main__":
-    run()
+    #run()
+    cProfile.run("run()")

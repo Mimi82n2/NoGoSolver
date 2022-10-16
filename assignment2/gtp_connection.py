@@ -49,6 +49,7 @@ class GtpConnection:
         self._debug_mode: bool = debug_mode
         self.go_engine = go_engine
         self.board: GoBoard = board
+        self.time_limit = 1
         self.commands: Dict[str, Callable[[List[str]], None]] = {
             "protocol_version": self.protocol_version_cmd,
             "quit": self.quit_cmd,
@@ -312,6 +313,7 @@ class GtpConnection:
     def timelimit_cmd(self, args):
         # Change the time limit for genmove and solve commands
         self.time_limit = int(args[0])
+        self.respond('')
 
     def gogui_rules_final_result_cmd(self):
         """ Implement this method correctly """
@@ -360,11 +362,42 @@ class GtpConnection:
     def genmove_cmd(self, args: List[str]) -> None:
         """ generate a move for color args[0] in {'b','w'} """
         # change this method to use your solver
+        signal.signal(signal.SIGALRM, signal_handler)
+        signal.alarm(self.time_limit)
+        try:
+            self.gen_solve(args)
+        except RuntimeError:
+            self.gen_random(args)
+        signal.alarm(0)
+
+    def gen_solve(self, args: List[str]) -> None:
+        self.code_from_board()
+        if self.board.current_player == 1:
+            current_color = 'b'
+            opponent_color = 'w'
+        else:
+            current_color = 'w'
+            opponent_color = 'b'
+        result = self.negamax()
+        #If current player is winner
+        if result:
+            legal_moves = GoBoardUtil.generate_legal_moves(self.board, self.board.current_player)
+            for move in legal_moves:
+                self.play_move_eff(move)
+                if self.table.get(self.code_from_board()) == current_color:
+                    self.respond("{}".format(format_point(point_to_coord(move, self.board.size))))
+                    return
+                self.board.board[move] = EMPTY
+                self.board.current_player = opponent(self.board.current_player)
+        # Winner is opponent
+        if result == False:
+            raise RuntimeError
+    def gen_random(self, args: List[str]) -> None:
         board_color = args[0].lower()
         color = color_to_int(board_color)
         move = self.go_engine.get_move(self.board, color)
         if move is None:
-            self.respond('unknown')
+            self.respond('resign')
             return
             
         move_coord = point_to_coord(move, self.board.size)
@@ -375,37 +408,41 @@ class GtpConnection:
         else:
             self.respond("Illegal move: {}".format(move_as_string))
             
-            
     def solve_cmd(self, args: List[str]) -> None:
-        self.code_from_board()
-        if self.board.current_player == 1:
-            current_color = 'b'
-            opponent_color = 'w'
-        else:
-            current_color = 'w'
-            opponent_color = 'b'
+        signal.signal(signal.SIGALRM, signal_handler)
+        signal.alarm(self.time_limit)
+        try:
+            self.code_from_board()
+            if self.board.current_player == 1:
+                current_color = 'b'
+                opponent_color = 'w'
+            else:
+                current_color = 'w'
+                opponent_color = 'b'
+            result = self.negamax()
+            #If current player is winner
+            if result:
+                legal_moves = GoBoardUtil.generate_legal_moves(self.board, self.board.current_player)
+                for move in legal_moves:
+                    self.play_move_eff(move)
+                    if self.table.get(self.code_from_board()) == current_color:
+                        self.board.board[move] = EMPTY
+                        self.board.current_player = opponent(self.board.current_player)
+                        self.respond("{} {}".format(current_color, format_point(point_to_coord(move, self.board.size)).lower()))
+                        signal.alarm(0)
+                        return
+                    self.board.board[move] = EMPTY
+                    self.board.current_player = opponent(self.board.current_player)
+                self.respond(current_color)
+            # Winner is opponent
+            if result == False:
+                self.respond(opponent_color)
+                signal.alarm(0)
+                return
+        except RuntimeError:
+            self.respond("unknown")
+        signal.alarm(0)
         
-        result = self.negamax()
-        #If current player is winner
-
-        if result:
-            legal_moves = GoBoardUtil.generate_legal_moves(self.board, self.board.current_player)
-            for move in legal_moves:
-                self.play_move_eff(move)
-                if self.table.get(self.code_from_board()) == current_color:
-                    self.respond("{} {}".format(current_color, format_point(point_to_coord(move, self.board.size)).lower()))
-                    return
-
-                self.board.board[move] = EMPTY
-                self.board.current_player = opponent(self.board.current_player)
-            self.respond(current_color)
-        # Winner is opponent
-        if result == False:
-            self.respond(opponent_color)
-            return
-
-        # Cannot solve within timelimit
-        #self.respond("unknown")
     
     def negamax(self) -> bool:
         code = self.code_from_board()
@@ -426,22 +463,17 @@ class GtpConnection:
             #old = self.board.copy()
             self.play_move_eff(move)
             #self.board.play_move(move, self.board.current_player)
-            
             isWin = not self.negamax()
-
             # Undo the move
             self.board.board[move] = EMPTY
             self.board.current_player = opponent(self.board.current_player)
             #self.board = old
-
             if (isWin):
                 if self.board.current_player == 1:
                     self.table[code] = 'b' 
                 else: 
                     self.table[code] = 'w' 
                 return True
-
-
         if self.board.current_player == 1:
              self.table[code] = 'w' 
         else: 

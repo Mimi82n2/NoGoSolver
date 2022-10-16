@@ -1,0 +1,319 @@
+<html>
+<head>
+<title>Output: a2_public_medium.gtp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="gogui-regress 1.5.1 (http://gogui.sf.net)">
+<style type="text/css">
+<!--
+body { margin:0; }
+span.comment { color:#999999; }
+span.fail { font-weight:bold; color:#ff5454; }
+span.error { font-weight:bold; color:#ffa954; }
+span.stderr { color:#666666; }
+span.invalid { background:#ff5454;}
+span.pass { font-weight:bold; color:#5eaf5e; }
+span.test { font-weight:bold; }
+-->
+</style>
+</head>
+<body bgcolor="white" text="black" link="#0000ee" vlink="#551a8b">
+<table border="0" width="100%" bgcolor="#91aee8" border="0">
+<tr><td>
+<h1>Output: a2_public_medium.gtp</h1>
+</td></tr>
+</table>
+<table width="100%" bgcolor="#e0e0e0">
+<tr><th align="left">Date:</th><td>October 15, 2022 at 2:04:56 PM MDT</td></tr>
+<tr><th align="left">Host:</th><td>ug02 (Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz)</td></tr>
+<tr><th align="left" valign="top">Command:</th>
+<td valign="top"><tt>python3 Go0.py</tt></td></tr>
+</table>
+<pre style="margin:1em">
+name
+= Go0
+
+version
+= 1.0
+
+cputime
+? Unknown command
+
+</pre>
+<hr style="margin:1em" size="1">
+<pre style="margin:1em">
+<span class="command">boardsize 4
+</span>= 
+
+<span class="command">clear_board
+</span>= 
+
+<span class="command">timelimit 50
+</span>= 
+
+<span class="command">play b a4
+</span>= 
+
+<span class="test"><a name="10">10 solve
+</a>#?[w d1]
+</span><span class="fail">= unknown
+
+</span>
+<span class="command">boardsize 4
+</span>= 
+
+<span class="command">clear_board
+</span>= 
+
+<span class="command">timelimit 50
+</span>= 
+
+<span class="command">play b a4
+</span>= 
+
+<span class="command">play w a2
+</span>= 
+
+<span class="test"><a name="20">20 solve
+</a>#?[b a1|b b3|b b2|b b1|b c3|b c2|b c1]
+= b a1
+
+</span>
+<span class="command">boardsize 5
+</span>= 
+
+<span class="command">clear_board
+</span>= 
+
+<span class="command">timelimit 100
+</span>= 
+
+<span class="command">play b a1
+</span>= 
+
+<span class="command">play w a5
+</span>= 
+
+<span class="command">play b e1
+</span>= 
+
+<span class="command">play w e5
+</span>= 
+
+<span class="command">play b e3
+</span>= 
+
+<span class="command">play w e2
+</span>= 
+
+<span class="command">play b c5
+</span>= 
+
+<span class="command">play w d4
+</span>= 
+
+<span class="command">play b c3
+</span>= 
+
+<span class="command">play w b2
+</span>= 
+
+<span class="command">play b c2
+</span>= 
+
+<span class="test"><a name="30">30 solve
+</a>#?[b]
+= b
+
+</span>
+</pre>
+<hr style="margin:1em" size="1">
+<pre style="margin:1em">
+cputime
+? Unknown command
+
+quit
+= 
+
+<span class="invalid">Invalid response:          154512519 function calls (154040356 primitive calls) in 116.327 seconds
+Invalid response:    Ordered by: standard name
+Invalid response:    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+Invalid response:        14    0.000    0.000    0.000    0.000 &lt;__array_function__ internals&gt;:2(amax)
+Invalid response:        14    0.000    0.000    0.000    0.000 &lt;__array_function__ internals&gt;:2(amin)
+Invalid response:   1178985    0.583    0.000    3.505    0.000 &lt;__array_function__ internals&gt;:2(copy)
+Invalid response:   3367688    1.733    0.000    5.678    0.000 &lt;__array_function__ internals&gt;:2(copyto)
+Invalid response:        14    0.000    0.000    0.000    0.000 &lt;__array_function__ internals&gt;:2(flipud)
+Invalid response:   2417188    1.143    0.000    3.689    0.000 &lt;__array_function__ internals&gt;:2(where)
+Invalid response:         1    0.000    0.000  116.327  116.327 &lt;string&gt;:1(&lt;module&gt;)
+Invalid response:         1    0.000    0.000    0.000    0.000 Go0.py:18(__init__)
+Invalid response:         1    0.000    0.000  116.327  116.327 Go0.py:39(run)
+Invalid response:        14    0.000    0.000    0.000    0.000 _asarray.py:110(asanyarray)
+Invalid response:        14    0.000    0.000    0.000    0.000 _asarray.py:23(asarray)
+Invalid response:         1    0.000    0.000    0.000    0.000 _sitebuiltins.py:19(__call__)
+Invalid response:        14    0.000    0.000    0.000    0.000 arrayprint.py:1151(__init__)
+Invalid response:       323    0.000    0.000    0.000    0.000 arrayprint.py:1159(__call__)
+Invalid response:        14    0.000    0.000    0.002    0.000 arrayprint.py:1500(_array_str_implementation)
+Invalid response:        14    0.000    0.000    0.000    0.000 arrayprint.py:358(_get_formatdict)
+Invalid response:        14    0.000    0.000    0.000    0.000 arrayprint.py:365(&lt;lambda&gt;)
+Invalid response:        14    0.000    0.000    0.001    0.000 arrayprint.py:409(_get_format_function)
+Invalid response:        14    0.000    0.000    0.002    0.000 arrayprint.py:461(wrapper)
+Invalid response:        14    0.000    0.000    0.002    0.000 arrayprint.py:478(_array2string)
+Invalid response:        14    0.000    0.000    0.002    0.000 arrayprint.py:516(array2string)
+Invalid response:        14    0.000    0.000    0.000    0.000 arrayprint.py:60(_make_options_dict)
+Invalid response:        14    0.000    0.000    0.000    0.000 arrayprint.py:65(&lt;dictcomp&gt;)
+Invalid response:       323    0.000    0.000    0.000    0.000 arrayprint.py:695(_extendLine)
+Invalid response:       323    0.000    0.000    0.000    0.000 arrayprint.py:709(_extendLine_pretty)
+Invalid response:        14    0.000    0.000    0.001    0.000 arrayprint.py:736(_formatArray)
+Invalid response:    404/14    0.001    0.000    0.001    0.000 arrayprint.py:745(recurser)
+Invalid response:   5141569    1.017    0.000    1.017    0.000 board.py:103(row_start)
+Invalid response:   1178992    4.224    0.000    5.242    0.000 board.py:109(_initialize_empty_points)
+Invalid response:   1178999    4.688    0.000    5.653    0.000 board.py:138(_is_surrounded)
+Invalid response:   2188695    2.820    0.000   30.659    0.000 board.py:149(_has_liberty)
+Invalid response:   2188696    1.861    0.000   42.071    0.000 board.py:161(_block_of)
+Invalid response:   2188696    7.605    0.000   36.435    0.000 board.py:171(connected_component)
+Invalid response:   1347590    0.922    0.000   44.305    0.000 board.py:190(_detect_and_process_capture)
+Invalid response:   1178999   10.284    0.000   90.932    0.000 board.py:201(play_move)
+Invalid response:   9824972   25.668    0.000   39.232    0.000 board.py:237(neighbors_of_color)
+Invalid response:  12182970    8.385    0.000    8.385    0.000 board.py:245(_neighbors)
+Invalid response:   1178986    0.665    0.000   12.190    0.000 board.py:46(__init__)
+Invalid response:   1178992    1.796    0.000   11.525    0.000 board.py:53(reset)
+Invalid response:   1178985    1.709    0.000   17.404    0.000 board.py:66(copy)
+Invalid response:  43677280    7.098    0.000    7.098    0.000 board.py:76(get_color)
+Invalid response:   1178985    0.905    0.000  109.240    0.000 board.py:84(is_legal)
+Invalid response:    228493    0.532    0.000    1.050    0.000 board.py:96(get_empty_points)
+Invalid response:   3367695    3.556    0.000    3.556    0.000 board_base.py:21(is_black_white)
+Invalid response:   2188696    4.140    0.000    4.140    0.000 board_base.py:24(is_black_white_empty)
+Invalid response:   2884867    0.467    0.000    0.467    0.000 board_base.py:27(opponent)
+Invalid response:   1178992    0.268    0.000    0.268    0.000 board_base.py:55(board_array_size)
+Invalid response:   2417188    1.384    0.000    5.073    0.000 board_base.py:65(where1d)
+Invalid response:        14    0.000    0.000    0.000    0.000 board_base.py:68(coord_to_point)
+Invalid response:    228493    1.196    0.000  111.546    0.000 board_util.py:13(generate_legal_moves)
+Invalid response:        14    0.000    0.000    0.000    0.000 board_util.py:78(get_twoD_board)
+Invalid response:        31    0.000    0.000    0.000    0.000 codecs.py:319(decode)
+Invalid response:         1    0.000    0.000    0.000    0.000 engine.py:7(__init__)
+Invalid response:         5    0.000    0.000    0.000    0.000 enum.py:313(__call__)
+Invalid response:         5    0.000    0.000    0.000    0.000 enum.py:631(__new__)
+Invalid response:         2    0.000    0.000    0.000    0.000 enum.py:693(_missing_)
+Invalid response:         1    0.000    0.000    0.000    0.000 enum.py:938(__and__)
+Invalid response:        14    0.000    0.000    0.000    0.000 fromnumeric.py:2612(_amax_dispatcher)
+Invalid response:        14    0.000    0.000    0.000    0.000 fromnumeric.py:2617(amax)
+Invalid response:        14    0.000    0.000    0.000    0.000 fromnumeric.py:2737(_amin_dispatcher)
+Invalid response:        14    0.000    0.000    0.000    0.000 fromnumeric.py:2742(amin)
+Invalid response:        28    0.000    0.000    0.000    0.000 fromnumeric.py:70(_wrapreduction)
+Invalid response:        28    0.000    0.000    0.000    0.000 fromnumeric.py:71(&lt;dictcomp&gt;)
+Invalid response:   1178985    0.159    0.000    0.159    0.000 function_base.py:711(_copy_dispatcher)
+Invalid response:   1178985    0.343    0.000    2.341    0.000 function_base.py:715(copy)
+Invalid response:        31    0.000    0.000  116.285    3.751 gtp_connection.py:101(get_cmd)
+Invalid response:        31    0.000    0.000    0.000    0.000 gtp_connection.py:132(has_arg_error)
+Invalid response:        16    0.000    0.000    0.000    0.000 gtp_connection.py:142(debug_msg)
+Invalid response:         2    0.000    0.000    0.000    0.000 gtp_connection.py:148(error)
+Invalid response:        29    0.000    0.000    0.000    0.000 gtp_connection.py:153(respond)
+Invalid response:         6    0.000    0.000    0.000    0.000 gtp_connection.py:158(reset)
+Invalid response:        14    0.000    0.000    0.002    0.000 gtp_connection.py:164(board2d)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:171(quit_cmd)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:176(name_cmd)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:180(version_cmd)
+Invalid response:         3    0.000    0.000    0.000    0.000 gtp_connection.py:184(clear_board_cmd)
+Invalid response:         3    0.000    0.000    0.000    0.000 gtp_connection.py:189(boardsize_cmd)
+Invalid response:         3    0.000    0.000    0.000    0.000 gtp_connection.py:313(timelimit_cmd)
+Invalid response:        14    0.000    0.000    0.004    0.000 gtp_connection.py:329(play_cmd)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:33(signal_handler)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:37(__init__)
+Invalid response:         3    0.000    0.000  116.280   38.760 gtp_connection.py:411(solve_cmd)
+Invalid response:  471772/3    1.231    0.000  116.279   38.760 gtp_connection.py:447(negamax)
+Invalid response:    471776    0.618    0.000    2.904    0.000 gtp_connection.py:483(code_from_board)
+Invalid response:    471770    0.292    0.000    0.347    0.000 gtp_connection.py:489(play_move_eff)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:500(point_to_coord)
+Invalid response:         1    0.000    0.000    0.000    0.000 gtp_connection.py:509(format_point)
+Invalid response:        14    0.000    0.000    0.000    0.000 gtp_connection.py:519(move_to_coord)
+Invalid response:        14    0.000    0.000    0.000    0.000 gtp_connection.py:536(color_to_int)
+Invalid response:         1    0.000    0.000  116.327  116.327 gtp_connection.py:91(start_connection)
+Invalid response:   3367688    0.434    0.000    0.434    0.000 multiarray.py:1054(copyto)
+Invalid response:   2417188    0.343    0.000    0.343    0.000 multiarray.py:321(where)
+Invalid response:   3367688    2.392    0.000   11.324    0.000 numeric.py:288(full)
+Invalid response:         3    0.000    0.000    0.000    0.000 re.py:203(sub)
+Invalid response:         3    0.000    0.000    0.000    0.000 re.py:289(_compile)
+Invalid response:         3    0.000    0.000    0.000    0.000 signal.py:25(_int_to_enum)
+Invalid response:         6    0.000    0.000    0.000    0.000 signal.py:35(_enum_to_int)
+Invalid response:         3    0.000    0.000    0.000    0.000 signal.py:45(signal)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:249(_compile_charset)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:276(_optimize_charset)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:423(_simple)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_compile.py:453(_get_iscased)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:461(_get_literal_prefix)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:492(_get_charset_prefix)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:536(_compile_info)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_compile.py:595(isstring)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:598(_code)
+Invalid response:       2/1    0.000    0.000    0.000    0.000 sre_compile.py:71(_compile)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_compile.py:759(compile)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_parse.py:111(__init__)
+Invalid response:         4    0.000    0.000    0.000    0.000 sre_parse.py:160(__len__)
+Invalid response:         9    0.000    0.000    0.000    0.000 sre_parse.py:164(__getitem__)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:168(__setitem__)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_parse.py:172(append)
+Invalid response:       2/1    0.000    0.000    0.000    0.000 sre_parse.py:174(getwidth)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:224(__init__)
+Invalid response:         4    0.000    0.000    0.000    0.000 sre_parse.py:233(__next)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_parse.py:249(match)
+Invalid response:         3    0.000    0.000    0.000    0.000 sre_parse.py:254(get)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_parse.py:286(tell)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:355(_escape)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:435(_parse_sub)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:493(_parse)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:76(__init__)
+Invalid response:         2    0.000    0.000    0.000    0.000 sre_parse.py:81(groups)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:921(fix_flags)
+Invalid response:         1    0.000    0.000    0.000    0.000 sre_parse.py:937(parse)
+Invalid response:        14    0.000    0.000    0.000    0.000 twodim_base.py:42(_flip_dispatcher)
+Invalid response:        14    0.000    0.000    0.000    0.000 twodim_base.py:97(flipud)
+Invalid response:        31    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+Invalid response:         6    0.000    0.000    0.000    0.000 {built-in method _signal.alarm}
+Invalid response:         3    0.000    0.000    0.000    0.000 {built-in method _signal.signal}
+Invalid response:         1    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+Invalid response:        14    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+Invalid response:         1    0.000    0.000    0.000    0.000 {built-in method builtins.divmod}
+Invalid response:         1    0.000    0.000  116.327  116.327 {built-in method builtins.exec}
+Invalid response:        14    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+Invalid response:        20    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+Invalid response:        42    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+Invalid response: 230944/230942    0.043    0.000    0.043    0.000 {built-in method builtins.len}
+Invalid response:        14    0.000    0.000    0.000    0.000 {built-in method builtins.locals}
+Invalid response:        81    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+Invalid response:         5    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+Invalid response:        28    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+Invalid response:   1179013    1.997    0.000    1.997    0.000 {built-in method numpy.array}
+Invalid response:   6963903    6.138    0.000    8.479    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+Invalid response:   3367688    3.254    0.000    3.254    0.000 {built-in method numpy.empty}
+Invalid response:        14    0.000    0.000    0.000    0.000 {built-in method numpy.zeros}
+Invalid response:        14    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+Invalid response:  15300718    1.249    0.000    1.249    0.000 {method 'append' of 'list' objects}
+Invalid response:         1    0.000    0.000    0.000    0.000 {method 'close' of '_io.TextIOWrapper' objects}
+Invalid response:        14    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
+Invalid response:         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+Invalid response:        14    0.000    0.000    0.000    0.000 {method 'discard' of 'set' objects}
+Invalid response:         1    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+Invalid response:        33    0.000    0.000    0.000    0.000 {method 'flush' of '_io.TextIOWrapper' objects}
+Invalid response:        62    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+Invalid response:    471775    0.156    0.000    0.156    0.000 {method 'get' of 'dict' objects}
+Invalid response:        31    0.000    0.000    0.000    0.000 {method 'isdigit' of 'str' objects}
+Invalid response:        43    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+Invalid response:    471776    1.820    0.000    1.820    0.000 {method 'join' of 'str' objects}
+Invalid response:        29    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
+Invalid response:         3    0.000    0.000    0.000    0.000 {method 'lstrip' of 'str' objects}
+Invalid response:   6202436    0.698    0.000    0.698    0.000 {method 'pop' of 'list' objects}
+Invalid response:        31    0.042    0.001    0.042    0.001 {method 'readline' of '_io.TextIOWrapper' objects}
+Invalid response:        28    0.000    0.000    0.000    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+Invalid response:    471776    0.236    0.000    0.236    0.000 {method 'replace' of 'str' objects}
+Invalid response:        81    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+Invalid response:        31    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+Invalid response:       323    0.000    0.000    0.000    0.000 {method 'splitlines' of 'str' objects}
+Invalid response:        31    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
+Invalid response:         3    0.000    0.000    0.000    0.000 {method 'sub' of 're.Pattern' objects}
+Invalid response:    471776    0.230    0.000    0.230    0.000 {method 'tolist' of 'numpy.ndarray' objects}
+Invalid response:        14    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+Invalid response:        31    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+</span></pre>
+<hr style="margin-bottom:0" size="1">
+<p style="margin-top:1; margin-right:5" align="right"><i><small>Generated on 10/15/22, 2:06 PM by gogui-regress 1.5.1 (<a href="http://gogui.sf.net">http://gogui.sf.net</a>)</small></i></p>
+</body>
+</html>
