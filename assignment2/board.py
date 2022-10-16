@@ -61,6 +61,7 @@ class GoBoard(object):
         self.maxpoint: int = board_array_size(size)
         self.board: np.ndarray[GO_POINT] = np.full(self.maxpoint, BORDER, dtype=GO_POINT)
         self._initialize_empty_points(self.board)
+        self._initialize_neighbors()
         
         
     def copy(self) -> 'GoBoard':
@@ -79,7 +80,23 @@ class GoBoard(object):
     def pt(self, row: int, col: int) -> GO_POINT:
         return coord_to_point(row, col, self.size)
 
-        
+    def _initialize_neighbors(self) -> None:
+        """
+        precompute neighbor array.
+        For each point on the board, store its list of on-the-board neighbors
+        """
+        self.neighbors: List[List[GO_POINT]] = []
+        for point in range(self.maxpoint):
+            if self.board[point] == BORDER:
+                self.neighbors.append([])
+            else:
+                self.neighbors.append(self._on_board_neighbors(GO_POINT(point)))
+    def _on_board_neighbors(self, point: GO_POINT) -> List:
+        nbs: List[GO_POINT] = []
+        for nb in self._neighbors(point):
+            if self.board[nb] != BORDER:
+                nbs.append(nb)
+        return nbs
         
     def is_legal(self, point: GO_POINT, color: GO_COLOR) -> bool:
         """
@@ -87,9 +104,33 @@ class GoBoard(object):
         This method tries to play the move on a temporary copy of the board.
         This prevents the board from being modified by the move
         """
-        board_copy: GoBoard = self.copy()
-        can_play_move = board_copy.play_move(point, color)
-        return can_play_move
+        legal = True
+        opp_color = opponent(color)
+        if self.board[point] != EMPTY:
+            return False
+        self.board[point] = color
+        #neighbors = self._neighbors(point)
+        neighbors = self.neighbors[point]
+        #check for capturing
+        for nb in neighbors:
+            if self.board[nb] == opp_color:
+                captured = self._detect_and_process_capture(nb)
+                if captured:
+                #undo capturing move
+                    self.board[point] = EMPTY
+                    return False
+        #check for suicide
+        block = self._block_of(point)
+        if not self._has_liberty(block):  
+            # undo suicide move
+            self.board[point] = EMPTY
+            return False
+        self.board[point] = EMPTY
+        return legal
+        
+        #board_copy: GoBoard = self.copy()
+        #can_play_move = board_copy.play_move(point, color)
+        #return can_play_move
 
         
            
@@ -242,7 +283,7 @@ class GoBoard(object):
         return nbc
     
     def find_neighbor_of_color(self, point: GO_POINT, color: GO_COLOR):
-        for nb in self._neighbors(point):
+        for nb in self.neighbors[point]:
             if self.get_color(nb) == color:
                 return nb
         return None
