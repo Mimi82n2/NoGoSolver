@@ -1,0 +1,17 @@
+boardsize 4
+clear_board
+timelimit 50
+play b a4
+10 solve
+#?[w d1]
+
+Before changes to board.py
+    151.538
+    150.748
+
+After changing find_neighbor_of_color and _had_liberty
+    146.69
+    152.43
+    141.86
+
+After storing liberty_of

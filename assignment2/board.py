@@ -152,8 +152,7 @@ class GoBoard(object):
         block is a numpy boolean array
         """
         for stone in where1d(block):
-            empty_nbs = self.neighbors_of_color(stone, EMPTY)
-            if empty_nbs:
+            if self.find_neighbor_of_color(stone, EMPTY):
                 return True
         return False
         
@@ -241,6 +240,13 @@ class GoBoard(object):
             if self.get_color(nb) == color:
                 nbc.append(nb)
         return nbc
+    
+    def find_neighbor_of_color(self, point: GO_POINT, color: GO_COLOR):
+        for nb in self._neighbors(point):
+            if self.get_color(nb) == color:
+                return nb
+        return None
+
 
     def _neighbors(self, point: GO_POINT) -> List:
         """ List of all four neighbors of the point """
