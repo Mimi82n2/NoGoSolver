@@ -14,4 +14,11 @@ After changing find_neighbor_of_color and _had_liberty
     152.43
     141.86
 
-After storing liberty_of
+After change is_legal to not use play move and initialize neighbors self.neighbors[point]
+    94.92
+    96.22
+    102.48
+    95.45
+
+Remove assert
+    84.5
