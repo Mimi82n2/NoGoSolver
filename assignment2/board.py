@@ -111,7 +111,24 @@ class GoBoard(object):
         self.board[point] = color
         #neighbors = self._neighbors(point)
         neighbors = self.neighbors[point]
-        
+        # True if no neighbors
+        """
+        canprune = True
+        for nb in neighbors:
+            print()
+            if self.board[nb] == 1 or self.board[nb] == 2:
+                canprune = False
+        if canprune:
+            self.board[point] = EMPTY
+            return True
+        """
+
+        """
+        if not np.any(np.in1d(self.board[neighbors],[1,2])):
+            self.board[point] = EMPTY
+            return True            
+        """
+
         #check for capturing
         for nb in neighbors:
             if self.board[nb] == opp_color:
@@ -133,8 +150,6 @@ class GoBoard(object):
         #board_copy: GoBoard = self.copy()
         #can_play_move = board_copy.play_move(point, color)
         #return can_play_move
-
-        
            
     def get_empty_points(self) -> np.ndarray:
         """
@@ -227,7 +242,6 @@ class GoBoard(object):
                     marker[nb] = True
                     pointstack.append(nb)
         return marker
-        
         
     def _detect_and_process_capture(self, nb_point: GO_POINT) -> GO_POINT:
         """

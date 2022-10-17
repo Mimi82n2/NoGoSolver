@@ -487,6 +487,7 @@ class GtpConnection:
     def code_from_board(self):
         
         return int('1'+(''.join(map(str, self.board.board.tolist()))).replace("3",""))
+        #return hash(self.board.board.tostring())
         
         
 

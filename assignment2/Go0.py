@@ -46,5 +46,5 @@ def run() -> None:
 
 
 if __name__ == "__main__":
-    #run()
-    cProfile.run("run()")
+    run()
+    #cProfile.run("run()")
