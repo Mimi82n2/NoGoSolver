@@ -98,6 +98,7 @@ class GoBoard(object):
                 nbs.append(nb)
         return nbs
         
+        
     def is_legal(self, point: GO_POINT, color: GO_COLOR) -> bool:
         """
         Check whether it is legal for color to play on point
@@ -198,7 +199,7 @@ class GoBoard(object):
         check whether empty point is surrounded by stones of color
         (or BORDER) neighbors
         """
-        for nb in self._neighbors(point):
+        for nb in self.neighbors[point]:
             nb_color = self.board[nb]
             if nb_color != BORDER and nb_color != color:
                 return False
@@ -268,7 +269,7 @@ class GoBoard(object):
         opp_color = opponent(color)
         in_enemy_eye = self._is_surrounded(point, opp_color)
         self.board[point] = color
-        neighbors = self._neighbors(point)
+        neighbors = self.neighbors[point]
         
         #check for capturing
         for nb in neighbors:
@@ -293,7 +294,7 @@ class GoBoard(object):
     def neighbors_of_color(self, point: GO_POINT, color: GO_COLOR) -> List:
         """ List of neighbors of point of given color """
         nbc: List[GO_POINT] = []
-        for nb in self._neighbors(point):
+        for nb in self.neighbors[point]:
             if self.get_color(nb) == color:
                 nbc.append(nb)
         return nbc

@@ -30,6 +30,27 @@ class GoBoardUtil(object):
             if board.is_legal(move, color):
                 legal_moves.append(move)
         return legal_moves
+
+    @staticmethod
+    def generate_legal_moves(board: GoBoard, color: GO_COLOR) -> List:
+        """
+        generate a list of all legal moves on the board.
+        Does not include the Pass move.
+
+        Arguments
+        ---------
+        board:
+            a GoBoard
+        color:
+            the color to generate the move for.
+        """
+        moves: np.ndarray[GO_POINT] = board.get_empty_points()
+        legal_moves: List[GO_POINT] = []
+        
+        for move in moves:
+            if board.is_legal(move, color):
+                legal_moves.append(move)
+        return legal_moves
         
         
 

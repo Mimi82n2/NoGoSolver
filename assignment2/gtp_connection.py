@@ -14,7 +14,6 @@ import signal
 import re
 from sys import stdin, stdout, stderr
 from typing import Any, Callable, Dict, List, Tuple
-import time
 
 from board_base import (
     is_black_white,
@@ -365,9 +364,11 @@ class GtpConnection:
         # change this method to use your solver
         signal.signal(signal.SIGALRM, signal_handler)
         signal.alarm(self.time_limit)
+        ins = self.board.copy()
         try:
             self.gen_solve(args)
         except RuntimeError:
+            self.board = ins
             self.gen_random(args)
         signal.alarm(0)
 
@@ -412,7 +413,8 @@ class GtpConnection:
     def solve_cmd(self, args: List[str]) -> None:
         signal.signal(signal.SIGALRM, signal_handler)
         signal.alarm(self.time_limit)
-        start = time.time() #TODO DELETE
+        ins = self.board.copy()
+     
         try:
             self.code_from_board()
             if self.board.current_player == 1:
@@ -422,8 +424,7 @@ class GtpConnection:
                 current_color = 'w'
                 opponent_color = 'b'
             result = self.negamax()
-            end = time.time() #TODO Delete
-            print(end - start) #TODO Delete
+
             #If current player is winner
             if result:
                 legal_moves = GoBoardUtil.generate_legal_moves(self.board, self.board.current_player)
@@ -444,6 +445,7 @@ class GtpConnection:
                 signal.alarm(0)
                 return
         except RuntimeError:
+            self.board = ins
             self.respond("unknown")
         signal.alarm(0)
         
